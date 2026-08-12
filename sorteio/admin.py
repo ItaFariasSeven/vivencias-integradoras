@@ -1,8 +1,7 @@
 from django.contrib import admin
-from .models import Usuarios, Professores, Alunos
+from .models import Grupo, Eixo
 
 # Register your models here.
 
-admin.site.register(Usuarios)
-admin.site.register(Professores)
-admin.site.register(Alunos)
+admin.site.register(Grupo)
+admin.site.register(Eixo)
