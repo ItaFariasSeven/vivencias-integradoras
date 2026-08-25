@@ -1,0 +1,66 @@
+.navBar{
+    width: 100%;
+    padding: 10px 50px;
+    background-color: transparent;
+    backdrop-filter: blur(30px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+}
+
+.navBar > span{
+    font-size: 30px;
+    font-weight: 800;
+    font-family: 'Outfit';
+    color: var(--azulEscuro);
+    padding: 5px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.navBar > span:hover{
+    background-color: rgba(202, 202, 202, 0.608);
+}
+
+.navBar nav > ul{
+    display: flex;
+    gap: 30px;
+    list-style-type: none;
+    align-items: center;
+}
+
+.menu{
+    position: relative;
+}
+
+.menu::after{
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--azulEscuro);
+    transition: all 0.3s ease;
+}
+
+.menu:hover::after{
+    width: 100%;
+}
+
+.navBar nav > ul .menu a{
+    text-decoration: none;
+    color: var(--azulEscuro);
+    font-weight: bold;
+}
+
+.navBar a{
+    text-decoration: none;
+    color: var(--branco);
+}

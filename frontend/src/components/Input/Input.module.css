@@ -1,0 +1,18 @@
+.containerInput{
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  padding: 10px 10px;
+  border: none;
+  outline: none;
+  border-radius: 7px;
+  font-size: 17px;
+  margin-top: 10px;
+}
+
+.input:focus {
+  border: none;
+  outline: none;
+}

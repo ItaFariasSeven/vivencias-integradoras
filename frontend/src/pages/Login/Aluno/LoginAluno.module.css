@@ -1,0 +1,69 @@
+.login {
+  width: 100%;
+  display: flex;
+}
+
+.containerLogin {
+  width: 40vw;
+  height: 100vh;
+  background-color: var(--azulClaro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardLogin {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.cardLogin span,
+.cardLogin label {
+  color: var(--branco);
+}
+
+.cardLogin > span {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.spanLogin {
+  padding: 5px 15px;
+  border-radius: 18px;
+  background-color: var(--azulEscuro);
+  color: var(--branco ) !important;
+  font-family: 'Outfit';
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.camposInput {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.containerFoto {
+  background-image: url("../../../assets/LoginAluno/pessoas-estudando.jpg");
+  background-position: center;
+  background-size: cover;
+  width: 60vw;
+  height: 100vh;
+  position: relative;
+}
+
+.containerFoto::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    var(--azulClaro),
+    transparent,
+    transparent
+  );
+}

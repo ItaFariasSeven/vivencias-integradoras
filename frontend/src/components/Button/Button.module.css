@@ -1,0 +1,101 @@
+.button {
+  transition: all 0.3s ease;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button:active{
+    transform: scale(0.92);
+}
+
+/* Tamanho */
+
+.small {
+  padding: 5px 10px;
+  font-size: 10px;
+  border-radius: 5px;
+}
+
+.medium {
+  padding: 8px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.large {
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 12px;
+}
+
+/* Color */
+
+.white {
+  color: var(--branco);
+}
+
+.blueWhite {
+  color: var(--azulClaro);
+}
+
+.blue {
+  color: var(--azulEscuro);
+}
+
+.turquesa {
+  color: var(--turquesa);
+}
+
+/* Version */
+
+.transparent {
+  background: transparent;
+}
+
+.bckBlueWhite {
+  background-color: var(--azulClaro);
+}
+.bckBlue {
+  background-color: var(--azulEscuro);
+}
+.bckTurquesa {
+  background-color: var(--turquesa);
+}
+.bckWhite {
+  background-color: var(--branco);
+}
+
+/* Borda */
+
+.border.white.small {
+  border: 1px solid var(--branco);
+}
+.border.white.medium,
+.border.white.large {
+  border: 2px solid var(--branco);
+}
+
+.border.blue.small {
+  border: 1px solid var(--azulEscuro);
+}
+.border.blue.medium,
+.border.blue.large {
+  border: 2px solid var(--azulEscuro);
+}
+
+.border.blueWhite.small {
+  border: 1px solid var(--azulClaro);
+}
+.border.blueWhite.medium,
+.border.blueWhite.large {
+  border: 2px solid var(--azulClaro);
+}
+
+.border.turquesa.small {
+  border: 1px solid var(--turquesa);
+}
+.border.turquesa.medium,
+.border.turquesa.large {
+  border: 2px solid var(--turquesa);
+}
