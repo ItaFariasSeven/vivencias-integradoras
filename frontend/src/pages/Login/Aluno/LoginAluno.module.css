@@ -67,3 +67,34 @@
     transparent
   );
 }
+
+.erro {
+  color: #ffffff;
+  background-color: rgba(180, 30, 30, 0.85);
+  padding: 10px 15px;
+  border-radius: 7px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.cadastro {
+  color: var(--branco);
+  text-align: center;
+  font-size: 14px;
+}
+
+
+.cadastro a {
+  color: var(--branco);
+  font-weight: bold;
+}
+
+.sucesso {
+  padding: 10px 15px;
+  border-radius: 7px;
+  background-color:
+    rgba(30, 145, 85, 0.9);
+  color: white;
+  font-size: 14px;
+  text-align: center;
+}
