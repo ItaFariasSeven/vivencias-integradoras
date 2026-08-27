@@ -98,3 +98,38 @@
   font-size: 14px;
   text-align: center;
 }
+
+.button{
+  width: 100%;
+}
+
+@media (max-width: 400px){
+    .containerFoto{
+      display: none;
+    }
+    .containerLogin{
+      width: 100%;
+    }
+
+    .cardLogin{
+      margin-top: 40px;
+    }
+}
+
+@media (max-width: 350px){
+
+
+
+  .cardLogin{
+    gap: 30px;
+
+  }
+  .camposInput{
+    gap: 15px;
+  }
+
+  .cardLogin > span{
+    font-size: 30px;
+  }
+
+}

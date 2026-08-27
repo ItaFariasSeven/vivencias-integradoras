@@ -9,6 +9,8 @@ import Button from "../../components/Button/Button.jsx";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
 
+import { HiBars4 as Bars} from "react-icons/hi2";
+
 export default function NavBar() {
 
   const { usuario, logout } = useAuth();
@@ -29,6 +31,7 @@ export default function NavBar() {
     <div className={styles.navBar}>
       <span style={{color: cor === 'branco' ? '#e2e7eb' : ''}}>IntegraGame</span>
       <nav>
+        <Bars className={styles.bars}/>
         <ul>
           <li className={styles.menu}>
             <Link>Teste</Link>
