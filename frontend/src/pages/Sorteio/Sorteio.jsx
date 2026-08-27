@@ -5,6 +5,7 @@ import ViewSorteio from "../../components/ViewSorteio/ViewSorteio.jsx";
 import { useEffect, useState } from "react";
 import { apiFetch } from "../../services/api.js";
 import { useAuth } from "../../context/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Sorteio() {
   const { usuario } = useAuth();
@@ -18,6 +19,8 @@ export default function Sorteio() {
   const [sorteando, setSorteando] = useState(false);
 
   const [erro, setErro] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function carregarDados() {
@@ -176,6 +179,9 @@ async function handleSortear() {
                       )
                     )}
               </ul>
+              <Button version='bckBlue' onClick={() => navigate(`/eixo/${meuGrupo.eixo.id}`)} >
+                Ver Grupos do eixo
+              </Button>
             </div>
           </div>
         )}

@@ -26,12 +26,24 @@ load_dotenv(BASE_DIR / '.env')
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv(
+    'DEBUG',
+    'False'
+).lower() == 'true'
 
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1'
 ]
+
+render_hostname = os.getenv(
+    'RENDER_EXTERNAL_HOSTNAME'
+)
+
+if render_hostname:
+    ALLOWED_HOSTS.append(
+        render_hostname
+    )
 
 
 # Application definition
@@ -51,6 +63,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -132,7 +145,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+
+STORAGES = {
+    "default": {
+        "BACKEND":
+            "django.core.files.storage.FileSystemStorage",
+    },
+
+    "staticfiles": {
+        "BACKEND":
+            "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 AUTH_USER_MODEL = 'sorteio.Usuario'
 
@@ -146,21 +174,47 @@ REST_FRAMEWORK = {
     ],
 }
 
-ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-]
+FRONTEND_URL = os.getenv(
+    "FRONTEND_URL"
+)
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "http://127.0.0.1:5173",
 ]
+
+if FRONTEND_URL:
+
+    FRONTEND_URL = (
+        FRONTEND_URL.rstrip("/")
+    )
+
+    CORS_ALLOWED_ORIGINS.append(
+        FRONTEND_URL
+    )
+
+    CSRF_TRUSTED_ORIGINS.append(
+        FRONTEND_URL
+    )
 
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
-    "http://127.0.0.1:5173",
 ]
 
 CORS_URLS_REGEX = r"^/api/.*$"
+
+SECURE_PROXY_SSL_HEADER = (
+    "HTTP_X_FORWARDED_PROTO",
+    "https"
+)
+
+if not DEBUG:
+
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+    SESSION_COOKIE_SAMESITE = "None"
+    CSRF_COOKIE_SAMESITE = "None"
+
+    SECURE_SSL_REDIRECT = True

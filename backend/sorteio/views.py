@@ -51,7 +51,7 @@ class CadastroAlunoView(APIView):
                 'turno': aluno.turno
             }
         },
-        status=status.HTTP_201CEATED
+        status=status.HTTP_201_CREATED
     )
 
 @method_decorator(csrf_protect, name='dispatch')
@@ -154,7 +154,7 @@ class SortearGrupoView(APIView):
                 {
                     'erro': 'Eixo Inválido'
                 },
-                status=status.HHTP_404_FOUND
+                status=status.HTTP_404_NOT_FOUND
             )
         except SorteioError as erro:
             return Response(
