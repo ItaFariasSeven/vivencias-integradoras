@@ -175,19 +175,21 @@ REST_FRAMEWORK = {
 }
 
 FRONTEND_URL = os.getenv(
-    "FRONTEND_URL"
-)
+    "FRONTEND_URL",
+    ""
+).rstrip("/")
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173"
 ]
 
 if FRONTEND_URL:
-
-    FRONTEND_URL = (
-        FRONTEND_URL.rstrip("/")
-    )
-
     CORS_ALLOWED_ORIGINS.append(
         FRONTEND_URL
     )
@@ -198,15 +200,11 @@ if FRONTEND_URL:
 
 CORS_ALLOW_CREDENTIALS = True
 
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5173",
-]
-
 CORS_URLS_REGEX = r"^/api/.*$"
 
 SECURE_PROXY_SSL_HEADER = (
     "HTTP_X_FORWARDED_PROTO",
-    "https"
+    "https",
 )
 
 if not DEBUG:
