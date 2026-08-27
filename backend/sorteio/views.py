@@ -13,6 +13,8 @@ from .models import ( Aluno, EdicaoSorteio, Eixo, Grupo, InscricaoSorteio)
 from .serializers import ( CadastroAlunoSerializer, LoginSerializer, EixoSerializer, GrupoSerializer, SorteioSerializer)
 from .services import ( sortear_aluno_noturno, SorteioError)
 
+from django.middleware.csrf import get_token
+
 # Create your views here.
 
 class TestView(APIView):
@@ -24,12 +26,14 @@ class TestView(APIView):
 
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class CsrfView(APIView):
-    authentication_classes = []
     permission_classes = [AllowAny]
+    authentication_classes = []
 
     def get(self, request):
+        token = get_token(request)
         return Response({
-            'mensagem': 'CSRF configurado'
+            'mensagem': 'CSRF configurado',
+            'csrfToken': token,
         })
 
 @method_decorator(csrf_protect, name='dispatch')

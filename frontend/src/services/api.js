@@ -1,16 +1,7 @@
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-
-    if (parts.length === 2){
-        return parts.pop().split(';').shift();
-    }
-    return null
-}
-
 export async function prepararCsrf() {
+
   const response = await fetch(
     `${API_URL}/auth/csrf/`,
     {
@@ -24,7 +15,15 @@ export async function prepararCsrf() {
     );
   }
 
-  return response.json();
+  const dados = await response.json();
+
+  if (!dados.csrfToken) {
+    throw new Error(
+      "Token CSRF não foi recebido."
+    );
+  }
+
+  return dados.csrfToken;
 }
 
 export async function apiFetch(
@@ -42,13 +41,7 @@ export async function apiFetch(
     "TRACE",
   ].includes(method);
 
-  if (
-    precisaCsrf &&
-    !getCookie("csrftoken")
-  ) {
-    await prepararCsrf();
-  }
-
+  
   const headers = new Headers(
     options.headers || {}
   );
@@ -65,15 +58,14 @@ export async function apiFetch(
   }
 
   if (precisaCsrf) {
-    const csrfToken =
-      getCookie("csrftoken");
 
-    if (csrfToken) {
-      headers.set(
-        "X-CSRFToken",
-        csrfToken
-      );
-    }
+    const csrfToken =
+      await prepararCsrf();
+
+    headers.set(
+      "X-CSRFToken",
+      csrfToken
+    );
   }
 
   const response = await fetch(
