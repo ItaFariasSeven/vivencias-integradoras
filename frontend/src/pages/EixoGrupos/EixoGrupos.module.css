@@ -1,0 +1,111 @@
+.pagina {
+  min-height: 100vh;
+  padding: 140px 8% 60px;
+  background-color: var(--azulClaro);
+}
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  color: white;
+}
+
+
+.header h1 {
+  margin: 0;
+  font-size: 38px;
+}
+
+
+.header p {
+  margin-top: 5px;
+}
+
+
+.grupos {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 25px;
+}
+
+
+.cardGrupo {
+  position: relative;
+  min-height: 280px;
+  padding: 25px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow:
+    0 3px 12px
+    rgba(0, 0, 0, 0.12);
+}
+
+
+.cardGrupo h2 {
+  margin-top: 0;
+  color: var(--azulClaro);
+}
+
+
+.quantidade {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: #eeeeee;
+  font-size: 13px;
+}
+
+
+.cardGrupo ul {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+}
+
+
+.cardGrupo li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom:
+    1px solid #eeeeee;
+}
+
+
+.cardGrupo small {
+  opacity: 0.65;
+  font-size: 12px;
+}
+
+
+.vazio {
+  margin-top: 30px;
+  opacity: 0.5;
+}
+
+
+.erro {
+  color: white;
+  margin-bottom: 20px;
+}
+
+
+@media (max-width: 800px) {
+  .grupos {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

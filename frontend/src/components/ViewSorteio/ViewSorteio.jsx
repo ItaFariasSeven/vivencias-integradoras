@@ -5,9 +5,9 @@ export default function ViewSorteio({grupo}){
         <div className={styles.container}>
             <span className={styles.grupo}>{grupo[0].titulo}</span>
             <ul>
-                {grupo[0].nome.map((i, index) => {
+                {grupo[0].nome.map((nome, index) => {
                     return (
-                        <li>{i}</li>
+                        <li key={index}>{nome}</li>
                     )
                 })}
             </ul>

@@ -1,0 +1,10 @@
+brotli==1.2.0
+Django==6.0.5
+django-cors-headers==4.9.0
+djangorestframework==3.18.0
+gunicorn==26.2.0
+pillow==12.2.0
+psycopg==3.3.4
+psycopg-binary==3.3.4
+python-dotenv==1.2.3
+whitenoise==6.12.0

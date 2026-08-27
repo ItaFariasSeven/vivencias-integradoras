@@ -3,11 +3,12 @@ import clsx from "clsx";
 
 export default function Button({
   size = "medium",
-  version = "blueBck",
+  version = "bckBlue",
   color = "white",
   border = false,
   style,
   children,
+  ...props
 }) {
   const button = clsx(
     styles.button,
@@ -17,5 +18,5 @@ export default function Button({
     border ? styles.border : '',
   );
 
-  return <button style={style} className={button}>{children}</button>;
+  return <button style={style} className={button} {...props}>{children}</button>;
 }

@@ -6,7 +6,22 @@ import { ContextNav } from "../../context/ContextNav.jsx";
 
 import Button from "../../components/Button/Button.jsx";
 
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext.jsx";
+
 export default function NavBar() {
+
+  const { usuario, logout } = useAuth();
+  const navigate = useNavigate();
+
+  async function handleLogout() {
+  try {
+    await logout();
+    navigate("/login-aluno");
+  } catch (erro) {
+    console.error("Erro ao sair:", erro);
+    }
+  }
 
   const {cor, setCor} = useContext(ContextNav)
 
@@ -25,9 +40,14 @@ export default function NavBar() {
             <Link>Teste</Link>
           </li>
           <li>
-            <Button style={{fontSize: '16px', paddingLeft: '20px', paddingRight: '20px'}} size="small" version="bckBlue" color="white">
+            {usuario? 
+            (<Button style={{fontSize: '16px', paddingLeft: '20px', paddingRight: '20px'}} size="small" version="bckBlue" color="white" onClick={handleLogout}>
+              Sair
+            </Button> ) : (
+            <Button style ={{fontSize: '16px', paddingLeft: '20px', paddingRight: '20px'}} size="small" version="bckBlue" color="white">
               <Link to='/login-aluno'>Login</Link>
             </Button>
+            )} 
           </li>
         </ul>
       </nav>
