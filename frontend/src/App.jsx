@@ -29,7 +29,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login-aluno" element={<LoginAluno />} />
-            <Route path="/cadastro-aluno" element={<ProtectedRoute> <CadastroAluno /> </ProtectedRoute>} />
+            <Route path="/cadastro-aluno" element={<CadastroAluno />} />
             <Route path="/sorteio" element={<ProtectedRoute> <Sorteio /> </ProtectedRoute>} />
             <Route path="/eixo/:eixoId" element={<ProtectedRoute> <EixoGrupos /> </ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
