@@ -67,80 +67,68 @@ export default function CadastroAluno() {
 
     event.preventDefault();
 
+    if(enviando) {
+      return;
+    }
+
     setErro("");
+    setEnviando(true);
 
 
-    if (
-      !formulario.nome.trim() ||
-      !formulario.sobrenome.trim() ||
-      !formulario.email.trim() ||
-      !formulario.ra.trim() ||
-      !formulario.data_nascimento ||
-      !formulario.curso ||
-      !formulario.turno ||
-      !formulario.senha ||
-      !formulario.confirmar_senha
-    ) {
-      setErro(
-        "Preencha todos os campos."
-      );
+    // if (
+    //   !formulario.nome.trim() ||
+    //   !formulario.sobrenome.trim() ||
+    //   !formulario.email.trim() ||
+    //   !formulario.ra.trim() ||
+    //   !formulario.data_nascimento ||
+    //   !formulario.curso ||
+    //   !formulario.turno ||
+    //   !formulario.senha ||
+    //   !formulario.confirmar_senha
+    // ) {
+    //   setErro(
+    //     "Preencha todos os campos."
+    //   );
 
-      return;
-    }
+    //   return;
+    // }
 
 
-    if (
-      formulario.senha !==
-      formulario.confirmar_senha
-    ) {
-      setErro(
-        "As senhas não coincidem."
-      );
+    // if (
+    //   formulario.senha !==
+    //   formulario.confirmar_senha
+    // ) {
+    //   setErro(
+    //     "As senhas não coincidem."
+    //   );
 
-      return;
-    }
+    //   return;
+    // }
 
 
     try {
 
-      setEnviando(true);
-
       await apiFetch(
-        "/auth/cadastro/",
-        {
+        "/auth/cadastro/", {
           method: "POST",
 
           body: JSON.stringify({
-            nome: formulario.nome.trim(),
-            sobrenome:
-              formulario.sobrenome.trim(),
-
-            email:
-              formulario.email
-                .trim()
-                .toLowerCase(),
-
-            ra: formulario.ra.trim(),
-
-            data_nascimento:
-              formulario.data_nascimento,
-
-            curso: formulario.curso,
-
-            turno: formulario.turno,
-
-            senha: formulario.senha,
-
-            confirmar_senha:
-              formulario.confirmar_senha,
+            nome,
+            sobrenome,
+            email,
+            ra,
+            data_nascimento,
+            curso,
+            turno,
+            senha,
+            confirmar_senha,
           }),
         }
       );
 
 
       navigate(
-        "/login-aluno",
-        {
+        "/login-aluno", {
           state: {
             mensagem:
               "Cadastro realizado com sucesso. Faça seu login.",
@@ -149,42 +137,50 @@ export default function CadastroAluno() {
       );
 
 
-    } catch (erro) {
+    } catch (error) {
 
       console.error(
         "Erro no cadastro:",
-        erro
+        error
       );
 
-      if (
-        erro.data &&
-        typeof erro.data === "object"
-      ) {
-
-        const mensagens =
-          Object.values(erro.data)
-            .flat()
-            .join(" ");
-
-        setErro(
-          mensagens ||
-          "Não foi possível realizar o cadastro."
-        );
-
-      } else {
-
-        setErro(
-          "Não foi possível realizar o cadastro."
-        );
-
-      }
+      setErro(
+        error.message || "Não foi possível realizar o cadastro"
+      );
 
     } finally {
-
       setEnviando(false);
-
     }
   }
+
+    //   if (
+    //     erro.data &&
+    //     typeof erro.data === "object"
+    //   ) {
+
+    //     const mensagens =
+    //       Object.values(erro.data)
+    //         .flat()
+    //         .join(" ");
+
+    //     setErro(
+    //       mensagens ||
+    //       "Não foi possível realizar o cadastro."
+    //     );
+
+    //   } else {
+
+    //     setErro(
+    //       "Não foi possível realizar o cadastro."
+    //     );
+
+    //   }
+
+    // } finally {
+
+    //   setEnviando(false);
+
+    // }
 
 
   return (
