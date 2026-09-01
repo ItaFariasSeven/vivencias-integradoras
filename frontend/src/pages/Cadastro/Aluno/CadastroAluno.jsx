@@ -112,17 +112,19 @@ export default function CadastroAluno() {
         "/auth/cadastro/", {
           method: "POST",
 
-          body: JSON.stringify({
-            nome,
-            sobrenome,
-            email,
-            ra,
-            data_nascimento,
-            curso,
-            turno,
-            senha,
-            confirmar_senha,
-          }),
+          body: JSON.stringify(formulario),
+
+          // body: JSON.stringify({
+          //   // nome,
+          //   // sobrenome,
+          //   // email,
+          //   // ra,
+          //   // data_nascimento,
+          //   // curso,
+          //   // turno,
+          //   // senha,
+          //   // confirmar_senha,
+          // }),
         }
       );
 
