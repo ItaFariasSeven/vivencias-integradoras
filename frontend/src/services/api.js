@@ -95,17 +95,23 @@ export async function apiFetch(
   }
 
   if (!response.ok) {
-    const erro = new Error(
-      dados?.erro ||
-      dados?.detail ||
-      "Erro na comunicação com o servidor."
-    );
+    let mensagemErro = dados?.erro || dados?.detail;
 
+    if(
+      !mensagemErro && dados && typeof dados == 'object'
+    ) {
+      mensagemErro = Object.entries(dados).map(([campo, mensagem]) => {
+        const texto = Array.isArray(mensagens) ? mensagens.join(" ") : String(mensagens);
+        return`${campo}: ${texto}`;
+      })
+      .join(" ")
+    }
+
+    const erro = new Error(
+      mensagemErro || "Erro na comunicação com servidor"
+    );
     erro.status = response.status;
     erro.data = dados;
 
     throw erro;
-  }
-
-  return dados;
-}
+  }}

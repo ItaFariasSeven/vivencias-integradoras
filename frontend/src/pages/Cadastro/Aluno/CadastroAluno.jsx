@@ -146,6 +146,11 @@ export default function CadastroAluno() {
         error
       );
 
+      console.error(
+        "Resposta do backend: ",
+        error.data
+      )
+
       setErro(
         error.message || "Não foi possível realizar o cadastro"
       );
