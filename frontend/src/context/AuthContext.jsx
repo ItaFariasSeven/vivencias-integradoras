@@ -45,7 +45,7 @@ export function AuthProvider({ children }) {
 
   async function login(ra, senha) {
 
-  await apiFetch(
+  const dados = await apiFetch(
     "/auth/login/",
     {
       method: "POST",
@@ -57,18 +57,9 @@ export function AuthProvider({ children }) {
     }
   );
 
-  const usuarioAtual =
-    await apiFetch(
-      "/auth/me/"
-    );
+  setUsuario(dados.usuario);
 
-
-  setUsuario(
-    usuarioAtual
-  );
-
-
-  return usuarioAtual;
+  return dados.usuario;
 }
 
 
