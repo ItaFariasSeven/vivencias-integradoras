@@ -31,7 +31,7 @@ export default function LoginAluno() {
       navigate("/sorteio");
     }
   }, [usuario, carregando, navigate]);
-
+  
   async function handleSubmit(event) {
     event.preventDefault();
 
