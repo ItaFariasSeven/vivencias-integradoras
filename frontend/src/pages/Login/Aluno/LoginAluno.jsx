@@ -48,7 +48,6 @@ export default function LoginAluno() {
 
       await login(ra.trim(), senha);
 
-      navigate("/sorteio");
     } catch (erro) {
       console.error("Erro no login:", erro);
 
