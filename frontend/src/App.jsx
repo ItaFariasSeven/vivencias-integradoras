@@ -19,28 +19,31 @@ import NotFound from "./pages/NotFound/NotFound.jsx";
 function App() {
   return (
     <Router>
-
       <ProviderNav>
-
         <AuthProvider>
-
           <NavBar />
 
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login-aluno" element={<LoginAluno />} />
             <Route path="/cadastro-aluno" element={<CadastroAluno />} />
-            <Route path="/sorteio" element={<ProtectedRoute> <Sorteio /> </ProtectedRoute>} />
-            <Route path="/eixo/:eixoId" element={<ProtectedRoute> <EixoGrupos /> </ProtectedRoute>} />
+            <Route
+              path="/sorteio"
+              element={
+                <ProtectedRoute>
+                  {" "}
+                  <Sorteio />{" "}
+                </ProtectedRoute>
+              }
+            />
+            {/* <Route path="/eixo/:eixoId" element={<ProtectedRoute> <EixoGrupos /> </ProtectedRoute>} /> */}
+            <Route path="/eixo/:eixoId" element={<EixoGrupos />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
 
           <Footer />
-
         </AuthProvider>
-
       </ProviderNav>
-
     </Router>
   );
 }

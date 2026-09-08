@@ -1,8 +1,11 @@
+/* NavBar.module.css */
+
 .navBar {
   width: 100%;
   padding: 10px 50px;
   background-color: transparent;
   backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,7 +19,7 @@
   font-size: 30px;
   font-weight: 800;
   font-family: "Outfit";
-  color: var(--azulEscuro);
+  color: var(--branco);
   padding: 5px 15px;
   border-radius: 7px;
   cursor: pointer;
@@ -24,9 +27,10 @@
 }
 
 .navBar > span:hover {
-  background-color: rgba(202, 202, 202, 0.608);
+  background-color: var(--backHover);
 }
 
+/* Nav padrão para Desktop */
 .navBar nav > ul {
   display: flex;
   gap: 30px;
@@ -35,29 +39,32 @@
 }
 
 .menu {
-  position: relative;
-}
-
-.menu::after {
-  content: "";
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  bottom: -3px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--azulEscuro);
-  transition: all 0.3s ease;
-}
-
-.menu:hover::after {
-  width: 100%;
+  list-style: none;
 }
 
 .navBar nav > ul .menu a {
+  position: relative;
+  display: inline-block;
   text-decoration: none;
-  color: var(--azulEscuro);
+  color: var(--branco);
   font-weight: bold;
+}
+
+.navBar nav > ul .menu a::after,
+.mobileNav .menu a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: var(--branco);
+  transition: width 0.3s ease;
+}
+
+.navBar nav > ul .menu:hover a::after,
+.mobileNav .menu:hover a::after {
+  width: 100%;
 }
 
 .navBar a {
@@ -72,21 +79,112 @@
   padding: 5px;
   border-radius: 5px;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .bars:active {
-  background-color: rgba(240, 248, 255, 0.541);
+  background-color: var(--backHover);
   transform: scale(0.93);
-  
 }
 
-@media (max-width: 400px) {
+/* Nav específico para Mobile (inicialmente oculto) */
+.mobileNav {
+  display: none;
+}
+
+.mobileOverlay {
+  display: none;
+}
+
+@media (max-width: 768px) {
   .navBar {
-    padding: 10px 5px;
+    padding: 10px 15px;
   }
 
-  .navBar nav > ul {
+  /* Desativa o nav padrão do desktop */
+  .navBar nav {
     display: none;
+  }
+
+  .mobileOverlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background-color: rgba(154, 154, 154, 0.28);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    animation: fadeIn 0.25s ease-out forwards;
+  }
+
+  .mobileOverlayClosing {
+    animation: fadeOut 0.25s ease-in forwards;
+  }
+
+  /* Painel mobile que sai pela lateral direita */
+  .mobileNav {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1001;
+    width: min(82vw, 320px);
+    height: 100dvh;
+    padding-top: 76px;
+    background-color: rgba(20, 31, 48, 0.299);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    box-shadow: -12px 0 30px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.25s ease-out forwards;
+  }
+
+  .mobileNavClosing {
+    animation: slideOut 0.25s ease-in forwards;
+  }
+
+  .closeMobileNav {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    display: grid;
+    place-items: center;
+    padding: 6px;
+    border: 0;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--branco);
+    font-size: 32px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .closeMobileNav:hover {
+    background-color: var(--backHover);
+  }
+
+  .closeMobileNav:active {
+    transform: scale(0.9);
+  }
+
+  .mobileNav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    list-style-type: none;
+    width: 100%;
+    padding: 20px 28px;
+  }
+
+  .mobileNav .menu a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--branco);
+    font-weight: bold;
+  }
+
+  .mobileNav button a {
+    text-decoration: none;
+    color: var(--branco);
   }
 
   .bars {
@@ -94,4 +192,48 @@
   }
 }
 
+@media (max-width: 450px) {
+  .mobileNav {
+    width: 100vw;
+  }
+}
 
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

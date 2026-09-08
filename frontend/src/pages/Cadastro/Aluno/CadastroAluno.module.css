@@ -24,6 +24,11 @@
 }
 
 
+.cardCadastro label {
+  color: var(--branco);
+}
+
+
 .titulo h1 {
   color: var(--branco);
   font-family: "Outfit";
