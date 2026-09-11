@@ -88,7 +88,9 @@ class EixoSerializer(serializers.ModelSerializer):
             'nome_eixo',
             'ordem',
             'quantidade_grupos',
-            'capacidade_grupo'
+            'capacidade_grupo',
+            'descricao',
+            'professores_responsaveis',
         ]
 
 class IntegranteSerializer(serializers.ModelSerializer):

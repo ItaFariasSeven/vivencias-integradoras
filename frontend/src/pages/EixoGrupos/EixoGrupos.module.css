@@ -42,7 +42,7 @@
   background-color: white;
   box-shadow:
     0 3px 12px
-    rgba(0, 0, 0, 0.12);
+    color-mix(in srgb, var(--azulEscuro) 12%, transparent);
 }
 
 

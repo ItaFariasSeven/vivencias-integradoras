@@ -134,7 +134,7 @@
     background-color: rgba(20, 31, 48, 0.299);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
-    box-shadow: -12px 0 30px rgba(0, 0, 0, 0.2);
+    box-shadow: -12px 0 30px color-mix(in srgb, var(--azulEscuro) 20%, transparent);
     animation: slideIn 0.25s ease-out forwards;
   }
 

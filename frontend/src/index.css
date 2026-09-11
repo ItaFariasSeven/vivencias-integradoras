@@ -16,6 +16,16 @@
   font-family: "Manrope", sans-serif;
 }
 
+body {
+  color: var(--azulEscuro);
+}
+
+input,
+textarea,
+select {
+  color: revert;
+}
+
 p {
   font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
 }
