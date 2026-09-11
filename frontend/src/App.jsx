@@ -27,7 +27,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login-aluno" element={<LoginAluno />} />
             <Route path="/cadastro-aluno" element={<CadastroAluno />} />
-            <Route
+            {/* <Route
               path="/sorteio"
               element={
                 <ProtectedRoute>
@@ -35,9 +35,18 @@ function App() {
                   <Sorteio />{" "}
                 </ProtectedRoute>
               }
+            /> */}
+            <Route path="/sorteio" element={<Sorteio />} />
+            <Route
+              path="/eixo/:eixoId"
+              element={
+                <ProtectedRoute>
+                  {" "}
+                  <EixoGrupos />{" "}
+                </ProtectedRoute>
+              }
             />
-            {/* <Route path="/eixo/:eixoId" element={<ProtectedRoute> <EixoGrupos /> </ProtectedRoute>} /> */}
-            <Route path="/eixo/:eixoId" element={<EixoGrupos />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
 

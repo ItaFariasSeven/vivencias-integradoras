@@ -69,6 +69,17 @@ class Eixo(models.Model):
     quantidade_grupos = models.PositiveSmallIntegerField(default=4)
     capacidade_grupo = models.PositiveSmallIntegerField(default=10)
     ativo = models.BooleanField(default=True)
+    
+    # NOVOS CAMPOS:
+    descricao = models.TextField(help_text="Descreva para que serve este eixo.", blank=True, null=True)
+    
+    # Professores direto como texto livre:
+    professores_responsaveis = models.CharField(
+        max_length=255, 
+        blank=True, 
+        null=True, 
+        help_text="Digite os nomes dos professores responsáveis separados por vírgula."
+    )
 
     class Meta:
         ordering = ['ordem']

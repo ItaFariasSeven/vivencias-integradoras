@@ -76,11 +76,19 @@ class EixoAdmin(admin.ModelAdmin):
         "quantidade_grupos",
         "capacidade_grupo",
         "ativo",
+        "descricao",                 # Adicionado aqui
+        "professores_responsaveis",  # Adicionado aqui
     )
+    # ... resto do código
 
     list_filter = (
         "edicao",
         "ativo",
+    )
+
+    search_fields = (
+        "nome_eixo",
+        "professores_responsaveis",
     )
 
     ordering = (

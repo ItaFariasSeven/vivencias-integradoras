@@ -165,7 +165,13 @@
   font-weight: bold;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 850px) {
+  .containerSorteio {
+    width: 70%;
+  }
+}
+
+@media (max-width: 450px) {
   .containerSorteio {
     width: 100%;
     height: 100%;

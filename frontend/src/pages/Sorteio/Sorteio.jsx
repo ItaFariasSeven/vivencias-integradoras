@@ -38,6 +38,7 @@ export default function Sorteio() {
         ]);
 
         setEixos(dadosEixos);
+        console.log("Dados do grupo:", dadosEixos);
         if (dadosGrupo.grupo) {
           setMeuGrupo(dadosGrupo);
         }
