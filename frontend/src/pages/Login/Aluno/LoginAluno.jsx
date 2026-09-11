@@ -1,10 +1,13 @@
 import styles from "./LoginAluno.module.css";
 import Button from "../../../components/Button/Button";
 import Input from "../../../components/Input/Input";
+import inputStyles from "../../../components/Input/Input.module.css";
 
 import { useContext, useEffect, useState } from "react";
 import { ContextNav } from "../../../context/ContextNav";
 import { useAuth } from "../../../context/AuthContext";
+import { FaEyeSlash as EyesClose } from "react-icons/fa";
+import { IoEyeSharp as EyesOpen} from "react-icons/io5";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -18,6 +21,7 @@ export default function LoginAluno() {
 
   const [ra, setRa] = useState("");
   const [senha, setSenha] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const [erro, setErro] = useState("");
   const [enviando, setEnviando] = useState(false);
@@ -31,7 +35,7 @@ export default function LoginAluno() {
       navigate("/sorteio");
     }
   }, [usuario, carregando, navigate]);
-  
+
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -47,7 +51,6 @@ export default function LoginAluno() {
       setEnviando(true);
 
       await login(ra.trim(), senha);
-
     } catch (erro) {
       console.error("Erro no login:", erro);
 
@@ -59,6 +62,10 @@ export default function LoginAluno() {
     } finally {
       setEnviando(false);
     }
+  }
+
+  function togglePasswordVisibility() {
+    setPasswordVisible(!passwordVisible);
   }
 
   return (
@@ -90,17 +97,33 @@ export default function LoginAluno() {
             </div>
 
             <div className={styles.input}>
-              <Input
-                id="senha"
-                name="senha"
-                type="password"
-                value={senha}
-                onChange={(event) => setSenha(event.target.value)}
-                placeholder={"•••••••••"}
-                autoComplete="current-password"
+              <div
+                className={`${inputStyles.containerInput} ${styles.inputContainer}`}
               >
-                Digite sua <span className={styles.senha}>senha</span>:
-              </Input>
+                <label htmlFor="senha">
+                  Digite sua <span className={styles.senha}>senha</span>:
+                </label>
+                <div className={styles.inputSenha}>
+                  <input
+                    style={{ width: "100%" }}
+                    className={inputStyles.input}
+                    id="senha"
+                    name="senha"
+                    type={passwordVisible ? "text" : "password"}
+                    value={senha}
+                    onChange={(event) => setSenha(event.target.value)}
+                    placeholder={"•••••••••"}
+                    autoComplete="current-password"
+                  />{" "}
+                 {passwordVisible ? <EyesOpen
+                    className={styles.eyesIcon}
+                    onClick={togglePasswordVisibility}
+                  /> : <EyesClose
+                    className={styles.eyesIcon}
+                    onClick={togglePasswordVisibility}
+                  />}
+                </div>
+              </div>
             </div>
           </div>
 

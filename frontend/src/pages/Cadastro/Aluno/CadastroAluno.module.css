@@ -57,6 +57,33 @@
 }
 
 
+.inputSenha {
+  position: relative;
+}
+
+
+.inputContainer label {
+  margin-bottom: 10px;
+}
+
+
+.inputSenha input {
+  width: 100%;
+  margin-top: 0;
+  padding-right: 40px;
+}
+
+
+.eyesIcon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: black;
+}
+
+
 .campoSelect {
   display: flex;
   flex-direction: column;

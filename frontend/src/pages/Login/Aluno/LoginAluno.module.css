@@ -38,10 +38,40 @@
   letter-spacing: 1px;
 }
 
+.inputContainer {
+  position: relative;
+}
+
+.inputContainer label {
+  margin-bottom: 10px;
+}
+
 .camposInput {
   display: flex;
   flex-direction: column;
   gap: 40px;
+}
+
+.input{
+  position: relative;
+}
+
+.inputSenha{
+  width: 100%;
+  position: relative;
+}
+
+.inputSenha input {
+  margin-top: 0;
+}
+
+.eyesIcon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: black;
 }
 
 .containerFoto {

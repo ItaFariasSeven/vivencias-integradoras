@@ -5,9 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 
 import Button from "../../../components/Button/Button";
 import Input from "../../../components/Input/Input";
+import inputStyles from "../../../components/Input/Input.module.css";
 
 import { apiFetch } from "../../../services/api";
 import { useAuth } from "../../../context/AuthContext";
+import { FaEyeSlash as EyesClose } from "react-icons/fa";
+import { IoEyeSharp as EyesOpen } from "react-icons/io5";
 
 export default function CadastroAluno() {
 
@@ -34,6 +37,8 @@ export default function CadastroAluno() {
 
   const [erro, setErro] = useState("");
   const [enviando, setEnviando] = useState(false);
+  const [senhaVisible, setSenhaVisible] = useState(false);
+  const [confirmarSenhaVisible, setConfirmarSenhaVisible] = useState(false);
 
 
   useEffect(() => {
@@ -60,6 +65,16 @@ export default function CadastroAluno() {
       ...anterior,
       [name]: value,
     }));
+  }
+
+
+  function toggleSenhaVisibility() {
+    setSenhaVisible((visivel) => !visivel);
+  }
+
+
+  function toggleConfirmarSenhaVisibility() {
+    setConfirmarSenhaVisible((visivel) => !visivel);
   }
 
 
@@ -364,30 +379,63 @@ export default function CadastroAluno() {
 
             <div className={styles.duasColunas}>
 
-              <Input
-                id="senha"
-                name="senha"
-                type="password"
-                value={formulario.senha}
-                onChange={handleChange}
-                placeholder="••••••••"
-                autoComplete="new-password"
+              <div
+                className={`${inputStyles.containerInput} ${styles.inputContainer}`}
               >
-                Senha
-              </Input>
+                <label htmlFor="senha">Senha</label>
+                <div className={styles.inputSenha}>
+                  <input
+                    className={inputStyles.input}
+                    id="senha"
+                    name="senha"
+                    type={senhaVisible ? "text" : "password"}
+                    value={formulario.senha}
+                    onChange={handleChange}
+                    placeholder="••••••••"
+                    autoComplete="new-password"
+                  />
+                  {senhaVisible ? (
+                    <EyesOpen
+                      className={styles.eyesIcon}
+                      onClick={toggleSenhaVisibility}
+                    />
+                  ) : (
+                    <EyesClose
+                      className={styles.eyesIcon}
+                      onClick={toggleSenhaVisibility}
+                    />
+                  )}
+                </div>
+              </div>
 
-
-              <Input
-                id="confirmar_senha"
-                name="confirmar_senha"
-                type="password"
-                value={formulario.confirmar_senha}
-                onChange={handleChange}
-                placeholder="••••••••"
-                autoComplete="new-password"
+              <div
+                className={`${inputStyles.containerInput} ${styles.inputContainer}`}
               >
-                Confirmar senha
-              </Input>
+                <label htmlFor="confirmar_senha">Confirmar senha</label>
+                <div className={styles.inputSenha}>
+                  <input
+                    className={inputStyles.input}
+                    id="confirmar_senha"
+                    name="confirmar_senha"
+                    type={confirmarSenhaVisible ? "text" : "password"}
+                    value={formulario.confirmar_senha}
+                    onChange={handleChange}
+                    placeholder="••••••••"
+                    autoComplete="new-password"
+                  />
+                  {confirmarSenhaVisible ? (
+                    <EyesOpen
+                      className={styles.eyesIcon}
+                      onClick={toggleConfirmarSenhaVisibility}
+                    />
+                  ) : (
+                    <EyesClose
+                      className={styles.eyesIcon}
+                      onClick={toggleConfirmarSenhaVisibility}
+                    />
+                  )}
+                </div>
+              </div>
 
             </div>
 
